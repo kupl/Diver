@@ -5,10 +5,6 @@ from analyzer.evaluate import *
 from analyzer.constraint import *
 
 def check(p_op,node_idx,p_state):
-    '''
-    mutantion 위치 여부 (이미 밝혀진것은 제외하는 것이 나은듯)
-    '''
-
     if p_op in ["arctan2","atan2"] and node_idx==1:
         return False
     elif p_op in ["^","pow"] and node_idx == 1:
@@ -84,7 +80,6 @@ class ConstraintAnalyzer(object):
             fn = trace[-1].filename
             lineno = trace[-1].lineno
             return
-    #========================================
 
     def term_matching(self,term,depth,parent=None):
         self.cnt+=1

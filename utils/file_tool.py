@@ -104,7 +104,7 @@ def distribute_benchmark(path, cores):
 def get_variable(seed_file):
     try:
         f = open(seed_file,"r",encoding='utf-8')
-        lines = f.read().splitlines() #'\n' 기준으로 저장
+        lines = f.read().splitlines() 
         f.close()
         f = open(seed_file,"w",encoding='utf-8')
         cmd = ['check-sat','set-logic','echo','exit','get-assertions','get-info','get-model','get-option','get-proof','get-unsat-assumptions','get-unsat-core','pop','push','reset','reset-assertions','set-info','set-logic','set-option','declare-fun','declare-const','define-fun','get-value','maximize','minimize']
@@ -247,7 +247,6 @@ def let_remove(node,let_bind,define_bind):
 def optimize_smt2(smt2):
     let_ast = transform_smt_to_ast(smt2)
     f = open(smt2,"w",encoding='utf-8')
-    #set-logic --> 뒤에 오기
     assert_queue = []
     define_bind = {}
     cid = 0

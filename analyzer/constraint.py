@@ -73,13 +73,11 @@ def analyze_cop_op(t,p_op,p_cond,siblings_eval,e,midx):
                 if s_eval:
                     cond = [True,False]
                 else:
-                    # only True or False 
                     cond = not(True in siblings_eval)
         elif t == "Real":
             if p_cond == [True,False]:
                 cond = interval[-inf,inf]
             elif p_cond == False:
-                # comment 
                 pass
             else:
                 cond = siblings_eval[0]
@@ -87,7 +85,6 @@ def analyze_cop_op(t,p_op,p_cond,siblings_eval,e,midx):
             if p_cond == [True,False]:
                 cond == interval[-inf,inf]
             elif p_cond == False:
-                # comment
                 pass
             else:
                 cond = siblings_eval[0]
@@ -136,7 +133,6 @@ def analyze_cop_op(t,p_op,p_cond,siblings_eval,e,midx):
                 _,u = fpu.max(siblings_eval[midx])
             cond = interval[l,u]
         else:
-            # > --> True equal
             l,u = [-inf,inf]
             if midx != 0 :
                 _,u = fpu.min(siblings_eval[midx-1])
@@ -158,7 +154,6 @@ def analyze_cop_op(t,p_op,p_cond,siblings_eval,e,midx):
                 u = (math.floor(u-(1e-10)) if t == "Int" else u-1e-10)
             cond = interval[l,u]
         else:
-            # >= : True 인경우와 동일함.
             l,u = [-inf,inf]
             if midx != 0 :
                 _,u = fpu.min(siblings_eval[midx-1])

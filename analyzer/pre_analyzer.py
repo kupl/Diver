@@ -150,9 +150,6 @@ class PreAnalyzer(object):
         
 
         cur_eval, cur_ty, cur_ast = self.get_evaluation(term, solver_terms)
-        '''
-        Type에 따라서 Constant, Variable 모으기
-        '''
         if ty == "Variable":
             self.var[cur_ty].add(op)
             

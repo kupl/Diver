@@ -13,6 +13,7 @@ from parser.smt_parser import *
 from utils.debug import *
 from utils.solver import *
 from utils.cvc5Interface import *
+import signal
 import copy
 
 def get_logic(logic):
@@ -47,10 +48,14 @@ def gen_variable(size=5):
     var = random.choice(chars)+''.join(random.choice(chars+start) for _ in range(size)) 
     return var
 
+class TimeOutException(Exception):
+    pass
+
+def alarm_handler(signum, frame):
+    raise TimeOutException()
 
 @trace
 class MutantGenerator(object):
-    #def __init__(self, seed_data, solver_data, formula_data, file_data, info, max_iteration, mode, debug = None):
     def __init__(self, seed_data, solver_data, formula_data, file_data, info, max_iteration, mode, experiment, debug = None):
         ### Seed Information 
         self.seed_var = seed_data["seed_var"]
@@ -185,8 +190,13 @@ class MutantGenerator(object):
                 mutant = ast_to_cvc5(mutant_ast,self.model, self.data, self.logic)
                 if mutant is None:
                     return False
-                res = (str(self.model.getValue(mutant))=="true")
-                return res
+                signal.signal(signal.SIGALRM, alarm_handler)
+                signal.alarm(10)
+                try:
+                    res = (str(self.model.getValue(mutant))=="true")
+                    return res
+                except TimeOutException as e:
+                    return False
             else:
                 eval = ConstraintAnalyzer(mutant_term_ast,self.solver_vars,self.model,self.logic)
                 term_evaluation = eval.validate()
@@ -372,9 +382,6 @@ class MutantGenerator(object):
             trace = inspect.trace()
             fn = trace[-1].filename
             lineno = trace[-1].lineno
-            #print("Runtime error at %s:%s" % (fn, lineno), flush=True)
-            #print("msg: " + str(e), flush=True) 
-            #print(seed,i,len(seed))
             return None
         m_f.close()
         return mutant_file

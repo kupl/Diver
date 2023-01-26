@@ -55,7 +55,6 @@ final_list = manager.list()
 def bug_copy(core,s_name,m_name,tmp_path,solver,SEED,seed,bug_type,message=None, debugging_info = None):
     now = time.localtime()
     t = "%04d/%02d/%02d %02d:%02d:%02d"%(now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec)
-    #logging.debug("[{}] [core-{}] File : {} => {}'s {}".format(t,core,m_name,solver,bug_type))
     logging.debug("File: {} -> {}'s {}".format(m_name,solver,bug_type))
     print(colored("[{}] [core-{}] ({},{}) SMT Solver({})=>Bug Type:{}".format(t,core,s_name,m_name,solver,bug_type),'red'))
     bug_dir = os.path.join(os.getcwd(),"bug_dir")
@@ -155,7 +154,7 @@ def run_diver_dreal(arg,benchmark,core,wait,SEED):
     gen_time = 0.0
     judge_time = 0.0
 
-    fuzzer_stat = [0.0 for i in range(5)] # succ, fail, end-to-end, solver, gen
+    fuzzer_stat = [0.0 for i in range(5)]
     fuzzer_stat[0] = int(fuzzer_stat[0])
 
     total_start = time.time()
@@ -267,7 +266,6 @@ def run_diver_dreal(arg,benchmark,core,wait,SEED):
 
                 logging.debug("#Mutant {} #Gen {} Res {} ST {} UT {} TT {} GT {} JT {}".format(fuzzer_stat[0],fuzzer_stat[1],res,sat_time,unsat_time,solver_time,gen_time,judge_time))
 
-                #logging.debug("[core-{}] #Gen & Test {} , #Trials {} , Result: {} ".format(core,fuzzer_stat[0],fuzzer_stat[1], res))
             except KeyboardInterrupt:
                 return
             except Exception as e:
@@ -277,7 +275,6 @@ def run_diver_dreal(arg,benchmark,core,wait,SEED):
                 print(lineno,e,fn)
                 continue
 
-        #logging.debug("[State : Result of Mutant ] sat: {}, unsat: {}, unknown: {}, invalid: {}, crash: {}, error: {}, timeout: {}".format(result["sat"],result["unsat"],result["unknown"],result["invalid"],result["crash"],result["error"],result["timeout"]))
     return
 
 

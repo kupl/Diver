@@ -26,7 +26,7 @@ class AST(list):
 class Variable(AST) : pass
 class Bool(AST) : pass
 class Constant(AST) : pass
-class RegLan(AST) : pass # regular expression node
+class RegLan(AST) : pass 
 class Const_String(AST) : pass
 
 class FOperator(AST) : pass
@@ -34,14 +34,13 @@ class BOperator(AST) : pass
 class SOperator(AST) : pass
 class ROperator(AST) : pass
 class R_Operator(AST) : pass
-class Operator(AST) : pass # regular expression node
+class Operator(AST) : pass 
 class _Operator(AST) : pass
 
 class Letstmt(AST) : pass
 class Bind_Var(AST) : pass
 class Bind_List(AST) : pass
 
-# 1. Statement Keyword 
 ASSERT_ = Keyword('assert')
 ASSERT_SOFT_ = Keyword('assert-soft')
 CHECK_SAT_ = Keyword('check-sat')
@@ -73,23 +72,21 @@ NL = Suppress(LineEnd())
 TAP = Suppress(Literal('\t'))
 Logic_ = (Keyword('QF_LIA') | Keyword('QF_NIA') | Keyword('QF_NRA') | Keyword('QF_NIRA') | Keyword('QF_NRA_ODE') | Keyword('QF_LRA') | Keyword('QF_RDL') | Keyword('ALL') | Keyword('QF_S') | Keyword('QF_SLIA') | Keyword('QF_IDL') | Keyword('QF_LIRA'))
  
-#Term : 수식
 TRUE_ = Keyword('true')
 FALSE_ = Keyword('false')
 
 
 Type_ = (Keyword('Real') | Keyword('Int') | Keyword('Bool') | Keyword('Binary') | Keyword('String') | Keyword('RegLan') | Keyword('(RegEx String)'))
-# 2. Type Keyword
 lp = Literal('(')
 rp = Literal(')')
 lbr = Suppress(Literal('['))
 rbr = Suppress(Literal(']'))
 
 
-INT_TOKEN = Regex(r'[-+]?(0|[1-9][0-9]*)') # Integer 
-HEXADECIMAL_TOKEN = Regex(r'#x[0-9A-Fa-f]+') # 16진수
-DOUBLE_TOKEN = Regex(r'[-+]?[0-9]+(\.[0-9]*)([eE][-+]?[0-9]+)?')# Real Number
-BINARY_TOKEN = Regex(r'#b[01]+') # Binary
+INT_TOKEN = Regex(r'[-+]?(0|[1-9][0-9]*)') 
+HEXADECIMAL_TOKEN = Regex(r'#x[0-9A-Fa-f]+') 
+DOUBLE_TOKEN = Regex(r'[-+]?[0-9]+(\.[0-9]*)([eE][-+]?[0-9]+)?')
+BINARY_TOKEN = Regex(r'#b[01]+') 
 STRING_TOKEN = Regex(r'"([0-9a-zA-Z]|[\\_:+%&\?\-*/=\.,<>@{}^`\[\]\(\)\|#$%^;&!\'~]| )*"') | Keyword('" "') | Keyword('""')
 
 SIMPLE_SYMBOL_TOKEN = Regex(r'[a-zA-Z~!@$%\^&*_+=<>\.?/\#-][0-9a-zA-Z~!@$%\^&*_+=<>\.?/\#-]*')
@@ -226,9 +223,7 @@ FORMULA<<(COMMENT | Bool.group(FALSE_) | Bool.group(TRUE_) |
 
 
 
-#=============================================================
-#SMT2 Statement : 
-COMMAND_ASSERT = (lp+ASSERT_+FORMULA+rp) #재귀적으로 하는 애들은 이렇게..
+COMMAND_ASSERT = (lp+ASSERT_+FORMULA+rp) 
 COMMAND_CHECK_SAT = (lp+CHECK_SAT_+rp)
 COMMAND_DECLARE_FUN = ( (lp+DECLARE_FUN+SYMBOL_TOKEN+lp+rp+Type_+rp) | 
                         (lp+DECLARE_FUN+SYMBOL_TOKEN+Type_+lp+rp+FORMULA+rp) |
@@ -237,8 +232,7 @@ COMMAND_DECLARE_FUN = ( (lp+DECLARE_FUN+SYMBOL_TOKEN+lp+rp+Type_+rp) |
                         (lp+DECLARE_CONST+SYMBOL_TOKEN+Type_+lbr+FORMULA+','+FORMULA+rbr+rp)
                     )
 
-#'(' TK_DEFINE_FUN SYMBOL enter_scope '(' name_sort_list ')' sort term exit_scope ')'
-COMMAND_DEFINE_FUN = (lp+DEFINE_FUN+SYMBOL_TOKEN+lp+rp+Type_+FORMULA+rp) #수정 +
+COMMAND_DEFINE_FUN = (lp+DEFINE_FUN+SYMBOL_TOKEN+lp+rp+Type_+FORMULA+rp) 
 COMMAND_EXIT = (lp+EXIT_+rp)
 COMMAND_GET_MODEL = (lp+GET_MODEL_+rp)
 COMMAND_GET_VALUE = (lp+GET_VALUE_+lp+FORMULA+rp+rp)
