@@ -1,6 +1,5 @@
 # Diver
-Diver is a black-box fuzzer for SMT Solvers. 
-You can learn the technical details of Diver in our paper "Diver: Oracle-Guided SMT Solver Testing with Unrestricted Random Mutations" accepted in ICSE 2023.
+Diver is a black-box fuzzer for SMT Solvers. The technical details of Diver can be found in our paper accepted to ICSE 2023: "Diver: Oracle-Guided SMT Solver Testing with Unrestricted Random Mutations"
 
 # Installation
 
