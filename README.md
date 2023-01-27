@@ -3,7 +3,6 @@ Diver is a black-box fuzzer for SMT Solvers. The technical details of Diver can 
 
 ## Installation
 
-### Dependencies 
 * Install Python libraries below:
 ```bash
 pip3 install pyinterval pyparsing toml rstr termcolor numpy z3-solver cvc5
@@ -37,5 +36,5 @@ Please see [USAGE.md](./USAGE.md).
 ## Structure of Diver
 Please see [STRUCTURE.md](https://github.com/kupl/Diver/blob/main/STRUCTURE.md) for implementation of Diver.
 
-## Artifact
-We provide the artifacts to reproduce the experiments in our ICSE 2023 paper: [Diver-Artifact](https://github.com/kupl/Diver-Artifact)
+## Research Artifact for ICSE 2023 paper
+To reproduce the experimental results in our ICSE 2023 paper, please visit: https://github.com/kupl/Diver-Artifact
