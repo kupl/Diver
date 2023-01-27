@@ -1,9 +1,9 @@
 # Diver
 Diver is a black-box fuzzer for SMT Solvers. The technical details of Diver can be found in our paper accepted to ICSE 2023: "Diver: Oracle-Guided SMT Solver Testing with Unrestricted Random Mutations"
 
-# Installation
+## Installation
 
-## Dependencies 
+### Dependencies 
 * Install Python libraries below:
 ```bash
 pip3 install pyinterval pyparsing toml rstr termcolor numpy z3-solver cvc5
@@ -31,11 +31,11 @@ make -j 4
 sudo make install
 ```
 
-# Usage
+## Usage
 Please see [USAGE.md](./USAGE.md).
 
-# Implementation of Diver
+## Structure of Diver
 Please see [STRUCTURE.md](https://github.com/kupl/Diver/blob/main/STRUCTURE.md) for implementation of Diver.
 
-# Artifact
-We provide the artifacts to reproduce the experiments in our paper: [Diver-Artifact](https://github.com/kupl/Diver-Artifact)
+## Artifact
+We provide the artifacts to reproduce the experiments in our ICSE 2023 paper: [Diver-Artifact](https://github.com/kupl/Diver-Artifact)
