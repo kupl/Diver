@@ -1,6 +1,5 @@
-# Installation
 
-## Running Diver on new other formulas
+## How to Use Diver
 You can use Diver to test an SMT Solver as follows (the instructions can be also found via ```python3 __main__.py --help```):
 ```bash
 $ python3 __main__.py -i <SEED_DIR> -s <SOLVER> -b <SOLVER_PATH> -o <SOLVER_OPTION> -t <SOLVER_TIME> -l <LOGIC> -m <MUTANTS_NUMBER>
